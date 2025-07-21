@@ -17,17 +17,14 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        version: "e8fdfc6cdadff38e03b3f6aeb39b1a579d08f282e72f701ba83cb7c1be58aa9d", // modèle "manga"
-        input: {
-          image: image,
-        },
+        version: "e8fdfc6cdadff38e03b3f6aeb39b1a579d08f282e72f701ba83cb7c1be58aa9d",
+        input: { image },
       }),
     });
 
     const result = await response.json();
     res.status(200).json(result);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Something went wrong" });
+    res.status(500).json({ error: err.message });
   }
 }
